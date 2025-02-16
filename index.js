@@ -27,7 +27,7 @@ const port = 3000;
 app.use(cors()); // Ajout du middleware CORS
 
 // Middleware pour parser le corps des requêtes en JSON
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' });
 
