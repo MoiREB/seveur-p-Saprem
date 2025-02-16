@@ -28,6 +28,10 @@ app.use(cors()); // Ajout du middleware CORS
 
 // Middleware pour parser le corps des requêtes en JSON
 app.use(bodyParser.json());
+app.use((req, res) => {
+    res.json({ message: 'Votre requête a bien été reçue !' });
+
+});
 
 // Endpoint pour supprimer un utilisateur
 app.post('/deleteUser', async (req, res) => {
@@ -47,6 +51,8 @@ app.post('/deleteUser', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+/*app.listen(port, () => {
   console.log(`Serveur démarré sur http://localhost:${port}`);
-});
+});*/
+
+module.exports = app;
