@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-
 // Charger les variables d'environnement
 dotenv.config();
 
@@ -19,11 +18,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-
-
 const app = express();
-//const port = 3000;
-
 
 // Middleware pour CORS
 app.use(cors()); // Ajout du middleware CORS
@@ -42,17 +37,14 @@ app.use((req, res, next) => {
   });
 
 
-  app.use((req, res) => {
-    res.json({ message: "UPDATE !" });
- });
-
 // Endpoint pour supprimer un utilisateur
 app.post('/deleteUser', async (req, res) => {
   const { uid } = req.body;
 
-  if (!uid) {
-    return res.status(400).json({ message: 'UID manquant' });
-  }
+  // Vérification que l'UID est bien présent
+    if (!uid || typeof uid !== 'string' || uid.trim() === '') {
+      return res.status(400).json({ message: 'UID manquant ou invalide' });
+    }
 
   try {
     await admin.auth().deleteUser(uid);
@@ -63,9 +55,5 @@ app.post('/deleteUser', async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la suppression de l\'utilisateur' });
   }
 });
-
-/*app.listen(port, () => {
-  console.log(`Serveur démarré sur http://localhost:${port}`);
-});*/
 
 module.exports = app;
