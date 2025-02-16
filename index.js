@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-/*
+
 // Charger les variables d'environnement
 dotenv.config();
 
@@ -19,18 +19,18 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-*/
+
 
 const app = express();
 //const port = 3000;
 
-/*
+
 // Middleware pour CORS
 app.use(cors()); // Ajout du middleware CORS
 
 // Middleware pour parser le corps des requêtes en JSON
 app.use(bodyParser.json());
-*/
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
