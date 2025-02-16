@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
-
+/*
 // Charger les variables d'environnement
 dotenv.config();
 
@@ -22,7 +22,7 @@ admin.initializeApp({
 
 const app = express();
 const port = 3000;
-
+*/
 // Middleware pour CORS
 app.use(cors()); // Ajout du middleware CORS
 
@@ -33,6 +33,7 @@ app.use((req, res) => {
 
 });
 
+/*
 // Endpoint pour supprimer un utilisateur
 app.post('/deleteUser', async (req, res) => {
   const { uid } = req.body;
@@ -49,7 +50,7 @@ app.post('/deleteUser', async (req, res) => {
     console.error("Erreur lors de la suppression de l'utilisateur:", error);
     res.status(500).json({ message: 'Erreur lors de la suppression de l\'utilisateur' });
   }
-});
+});*/
 
 /*app.listen(port, () => {
   console.log(`Serveur démarré sur http://localhost:${port}`);
