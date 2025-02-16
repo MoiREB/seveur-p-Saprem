@@ -1,4 +1,4 @@
-// server.js
+// Pour supprimer un utilisateur Firebase, nous devons utiliser l'API Admin SDK de Firebase.
 
 const express = require('express');
 const admin = require('firebase-admin');
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token,Origin, X-Requested-With, Content, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
-  });
+});
 
 
 // Endpoint pour supprimer un utilisateur
@@ -42,9 +42,9 @@ app.post('/deleteUser', async (req, res) => {
   const { uid } = req.body;
 
   // Vérification que l'UID est bien présent
-    if (!uid || typeof uid !== 'string' || uid.trim() === '') {
-      return res.status(400).json({ message: 'UID manquant ou invalide' });
-    }
+   if (!uid || typeof uid !== 'string' || uid.trim() === '') {
+     return res.status(400).json({ message: 'UID manquant ou invalide' });
+   }
 
   try {
     await admin.auth().deleteUser(uid);
