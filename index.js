@@ -56,4 +56,33 @@ app.post('/deleteUser', async (req, res) => {
   }
 });
 
+/// Endpoint pour envoyer une notification avec Firebase Cloud Messaging
+app.post('/sendNotification', async (req, res) => {
+   const { title, message, token } = req.body;
+
+   // Vérification que les informations nécessaires sont présentes
+   if (!title || !message || !token) {
+     return res.status(400).json({ message: 'Titre, message ou token manquant' });
+   }
+
+   const notification = {
+     notification: {
+       title: title,
+       body: message,
+     },
+     token: token,
+   };
+
+   try {
+     // Envoi de la notification via Firebase Cloud Messaging
+     await admin.messaging().send(notification);
+     console.log(`Notification envoyée à ${token}`);
+     res.status(200).json({ message: 'Notification envoyée avec succès' });
+   } catch (error) {
+     console.error("Erreur lors de l'envoi de la notification:", error);
+     res.status(500).json({ message: 'Erreur lors de l\'envoi de la notification' });
+   }
+});
+
+
 module.exports = app;
