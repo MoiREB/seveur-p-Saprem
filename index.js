@@ -37,7 +37,10 @@ app.use((req, res, next) => {
 });
 
 
-// Endpoint pour supprimer un utilisateur
+/**
+* Supprime un utilisateur de Firebase Authentication.
+* args: uid (string) - L'UID de l'utilisateur à supprimer.
+*/
 app.post('/deleteUser', async (req, res) => {
   const { uid } = req.body;
 
@@ -56,7 +59,12 @@ app.post('/deleteUser', async (req, res) => {
   }
 });
 
-/// Endpoint pour envoyer une notification avec Firebase Cloud Messaging
+/**
+* Envoye une notification avec Firebase Cloud Messaging
+* args: title (string) - Le titre de la notification.
+*       message (string) - Le message de la notification.
+*       token (string) - Le token de l'appareil cible.
+*/
 app.post('/sendNotification', async (req, res) => {
    const { title, message, token } = req.body;
 
